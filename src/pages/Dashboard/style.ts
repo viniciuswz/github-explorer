@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import { shade } from 'polished';
+import styled, { css } from 'styled-components';
+
+interface Form {
+  hasError: boolean;
+}
 
 const Title = styled.h1`
   font-weight: bold;
@@ -7,7 +12,7 @@ const Title = styled.h1`
   margin-top: 102px;
 `;
 
-const Form = styled.form`
+const Form = styled.form<Form>`
   margin-top: 40px;
   display: flex;
   input {
@@ -18,6 +23,13 @@ const Form = styled.form`
     padding: 0 24px;
     border-radius: 5px 0px 0px 5px;
     font-size: 20px;
+    border: 2px solid #fff;
+    border-right: 0;
+    ${props =>
+      props.hasError &&
+      css`
+        border-color: #c53030;
+      `}
 
     &::placeholder {
       color: #a8a8b3;
@@ -31,6 +43,9 @@ const Form = styled.form`
     font-size: 18px;
     border-radius: 0px 5px 5px 0px;
     border: 0;
+    &:hover {
+      background: ${shade(0.2, '#04d361')};
+    }
   }
 `;
 
@@ -40,36 +55,59 @@ const Content = styled.div`
   margin-top: 120px;
 `;
 
-const RepositoryItem = styled.div`
+const Repositories = styled.div`
   display: flex;
-  align-items: center;
-  width: 100%;
-  align-items: center;
-  background: #fff;
-  padding: 14px 29px;
-  border-radius: 5px;
-  img {
-    width: 83px;
-    height: 83px;
-    border-radius: 50%;
-    margin-right: 22px;
-  }
-  div {
-    h2 {
-      font-size: 24px;
-      line-height: 28px;
-      color: #3d3d4d;
-      margin-bottom: 4px;
+  flex-wrap: wrap;
+  margin-top: 120px;
+  a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    align-items: center;
+    background: #fff;
+    padding: 14px 29px;
+    border-radius: 5px;
+    transition: 0.6s;
+    text-decoration: none;
+    & ~ a {
+      margin-top: 16px;
     }
-    p {
-      font-size: 18px;
-      color: #a8a8b3;
+    &:hover {
+      transform: translateX(10px) translateY(-4px);
     }
-  }
-  svg {
-    margin-left: auto;
-    color: #c9c9d4;
+    img {
+      width: 83px;
+      height: 83px;
+      border-radius: 50%;
+      margin-right: 22px;
+    }
+    div {
+      width: 80%;
+      h2 {
+        font-size: 24px;
+        line-height: 28px;
+        color: #3d3d4d;
+        margin-bottom: 4px;
+      }
+      p {
+        font-size: 18px;
+        color: #a8a8b3;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+    svg {
+      margin-left: auto;
+      color: #c9c9d4;
+    }
   }
 `;
 
-export { Title, Form, Content, RepositoryItem };
+const Error = styled.span`
+  display: block;
+  color: #c53030;
+  margin-top: 8px;
+`;
+
+export { Title, Form, Content, Repositories, Error };
