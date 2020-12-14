@@ -64,35 +64,38 @@ const Profile = styled.section`
   }
 `;
 
-const CommitItem = styled.a`
-  width: 100%;
-  padding: 24px;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 5px;
-  &:hover {
-    transform: translateX(10px);
-  }
-  & ~ a {
-    margin-bottom: 16px;
-  }
-  div {
-    strong {
-      font-size: 24px;
-      color: #3d3d4d;
-      margin-bottom: 8px;
+const Issues = styled.div`
+  a {
+    width: 100%;
+    padding: 24px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    &:hover {
+      transform: translateX(10px);
     }
-    p {
-      font-size: 18px;
-      color: #a8a8b3;
+    & ~ a {
+      margin-top: 16px;
     }
-  }
-  svg {
-    margin-left: auto;
-    color: #c9c9d4;
+    div {
+      strong {
+        font-size: 24px;
+        color: #3d3d4d;
+        margin-bottom: 8px;
+      }
+      p {
+        font-size: 18px;
+        color: #a8a8b3;
+      }
+    }
+    svg {
+      margin-left: auto;
+      color: #c9c9d4;
+    }
   }
 `;
 
-export { Header, Profile, CommitItem };
+export { Header, Profile, Issues };
